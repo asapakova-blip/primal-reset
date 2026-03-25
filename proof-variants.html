@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proof Section — 3 Variants</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+    --gold: #CC9420;
+    --gold-light: #E8A830;
+    --dark: #0C0C0C;
+    --dark-2: #141414;
+    --dark-3: #1C1C1C;
+    --text-dark: #F0EDE8;
+    --muted-dark: #686868;
+    --font: 'Inter', sans-serif;
+}
+body { font-family: var(--font); background: #111; color: var(--text-dark); -webkit-font-smoothing: antialiased; }
+
+/* ── NAV BETWEEN VARIANTS ── */
+.variant-nav {
+    position: sticky; top: 0; z-index: 200;
+    background: rgba(12,12,12,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 28px;
+}
+.variant-nav a {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted-dark); text-decoration: none; padding: 8px 18px;
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 4px;
+    transition: all 0.2s;
+}
+.variant-nav a:hover, .variant-nav a.active { color: #000; background: var(--gold); border-color: var(--gold); }
+.variant-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); text-align: center; padding: 32px 0 20px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   VARIANT A — Full-bleed dark carousel
+   Photos edge-to-edge, dark section, name overlay on each
+───────────────────────────────────────────────────────────── */
+.variant-a {
+    background: var(--dark);
+    padding: 80px 0 72px;
+}
+.va-head { text-align: left; padding: 0 60px; margin-bottom: 48px; }
+.va-head .lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 16px; }
+.va-head h2 { font-size: clamp(30px, 4vw, 52px); font-weight: 900; letter-spacing: -0.03em; line-height: 1.07; }
+
+.va-carousel { position: relative; overflow: hidden; }
+.va-track {
+    display: flex;
+    gap: 4px;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+.va-slide {
+    flex: 0 0 calc(33.333% - 3px);
+    min-width: calc(33.333% - 3px);
+    position: relative;
+    overflow: hidden;
+}
+.va-slide img {
+    width: 100%; aspect-ratio: 3/4;
+    object-fit: cover; object-position: center top;
+    display: block;
+    transition: transform 0.6s ease;
+}
+.va-slide:hover img { transform: scale(1.03); }
+.va-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(12,12,12,0.88) 0%, rgba(12,12,12,0.2) 40%, transparent 65%);
+}
+.va-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 28px 24px;
+    z-index: 1;
+}
+.va-name { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; color: var(--text-dark); display: block; margin-bottom: 4px; }
+.va-result { font-size: 12px; color: var(--gold); font-weight: 600; letter-spacing: 0.04em; }
+
+.va-controls {
+    display: flex; align-items: center; justify-content: center; gap: 20px;
+    padding: 36px 60px 0;
+}
+.va-btn {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    color: var(--text-dark); font-size: 18px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+}
+.va-btn:hover { background: var(--gold); border-color: var(--gold); color: #000; }
+.va-btn:disabled { opacity: 0.2; cursor: default; }
+.va-dots { display: flex; gap: 7px; align-items: center; }
+.va-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.2); border: none; cursor: pointer; transition: all 0.25s; }
+.va-dot.active { background: var(--gold); width: 22px; border-radius: 3px; }
+
+/* ─────────────────────────────────────────────────────────────
+   VARIANT B — Editorial masonry grid (static, no carousel)
+   1 big left + 2 stacked right, alternating rows, dark bg
+───────────────────────────────────────────────────────────── */
+.variant-b {
+    background: var(--dark-2);
+    padding: 80px 0;
+}
+.vb-head { padding: 0 60px; margin-bottom: 48px; }
+.vb-head .lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 16px; }
+.vb-head h2 { font-size: clamp(30px, 4vw, 52px); font-weight: 900; letter-spacing: -0.03em; line-height: 1.07; }
+
+.vb-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 4px;
+}
+/* Row 1: big left (2 cols wide, 2 rows tall) + 2 stacked right */
+.vb-img { position: relative; overflow: hidden; }
+.vb-img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: transform 0.6s ease; }
+.vb-img:hover img { transform: scale(1.04); }
+.vb-img::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(12,12,12,0.7) 0%, transparent 50%);
+}
+
+.vb-big-1  { grid-column: 1 / 3; grid-row: 1 / 3; aspect-ratio: unset; }
+.vb-big-1 img  { aspect-ratio: unset; height: 100%; min-height: 480px; }
+.vb-sm-1   { grid-column: 3; grid-row: 1; }
+.vb-sm-1 img { aspect-ratio: 3/4; }
+.vb-sm-2   { grid-column: 3; grid-row: 2; }
+.vb-sm-2 img { aspect-ratio: 3/4; }
+.vb-sm-3   { grid-column: 1; grid-row: 3; }
+.vb-sm-3 img { aspect-ratio: 3/4; }
+.vb-sm-4   { grid-column: 2; grid-row: 3; }
+.vb-sm-4 img { aspect-ratio: 3/4; }
+.vb-big-2  { grid-column: 3; grid-row: 3; }
+.vb-big-2 img { aspect-ratio: 3/4; }
+
+.vb-tag {
+    position: absolute; bottom: 16px; left: 16px; z-index: 1;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold); background: rgba(12,12,12,0.75); padding: 5px 10px;
+    border: 1px solid rgba(200,146,42,0.3);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   VARIANT C — Filmstrip (horizontal scroll, cinematic)
+   All same height, different widths, dark, auto-scroll hint
+───────────────────────────────────────────────────────────── */
+.variant-c {
+    background: var(--dark);
+    padding: 80px 0;
+    overflow: hidden;
+}
+.vc-head { padding: 0 60px; margin-bottom: 48px; display: flex; align-items: flex-end; justify-content: space-between; }
+.vc-head-left .lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 16px; }
+.vc-head-left h2 { font-size: clamp(30px, 4vw, 52px); font-weight: 900; letter-spacing: -0.03em; line-height: 1.07; }
+.vc-count { font-size: 11px; color: var(--muted-dark); letter-spacing: 0.08em; text-transform: uppercase; }
+
+.vc-strip-wrap {
+    overflow-x: auto;
+    cursor: grab;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+.vc-strip-wrap::-webkit-scrollbar { display: none; }
+.vc-strip-wrap.grabbing { cursor: grabbing; }
+
+.vc-strip {
+    display: flex;
+    gap: 4px;
+    padding: 0 60px;
+}
+.vc-frame {
+    flex: 0 0 auto;
+    height: 68vh;
+    min-height: 380px;
+    max-height: 600px;
+    position: relative;
+    overflow: hidden;
+}
+.vc-frame img {
+    height: 100%;
+    width: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+.vc-frame:hover img { transform: scale(1.03); }
+.vc-frame::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(12,12,12,0.75) 0%, transparent 45%);
+}
+.vc-frame-caption {
+    position: absolute; bottom: 18px; left: 18px; z-index: 1;
+}
+.vc-frame-name { font-size: 13px; font-weight: 700; color: var(--text-dark); display: block; margin-bottom: 3px; }
+.vc-frame-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+
+.vc-hint {
+    padding: 20px 60px 0;
+    display: flex; align-items: center; gap: 24px;
+}
+.vc-scroll-line {
+    height: 1px; flex: 1; max-width: 320px; background: rgba(255,255,255,0.08);
+    position: relative; overflow: hidden;
+}
+.vc-scroll-thumb {
+    position: absolute; top: 0; left: 0; height: 100%;
+    width: 30%; background: var(--gold);
+    transition: left 0.1s;
+}
+.vc-hint-txt { font-size: 11px; color: var(--muted-dark); letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+    .va-slide, .va-btn-area { flex: 0 0 calc(75% - 3px); min-width: calc(75% - 3px); }
+    .va-head, .vb-head, .vc-head { padding: 0 24px; }
+    .vc-hint, .vc-strip { padding-left: 24px; padding-right: 24px; }
+    .vb-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .vb-big-1 { grid-column: 1 / 3; grid-row: 1; }
+    .vb-big-1 img { min-height: 260px; }
+    .vb-sm-1, .vb-sm-2 { grid-column: unset; grid-row: unset; }
+    .vb-sm-3, .vb-sm-4, .vb-big-2 { grid-column: unset; grid-row: unset; }
+    .vc-frame { height: 50vh; }
+}
+</style>
+</head>
+<body>
+
+<div class="variant-nav">
+    <a href="#va">A — Dark Carousel</a>
+    <a href="#vb">B — Editorial Grid</a>
+    <a href="#vc">C — Filmstrip</a>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     VARIANT A — Full-bleed dark carousel
+════════════════════════════════════════════ -->
+<div class="variant-label" id="va">VARIANT A — Dark Carousel</div>
+<section class="variant-a">
+    <div class="va-head">
+        <span class="lbl">Real results</span>
+        <h2>People who decided<br>to go primal.</h2>
+    </div>
+
+    <div class="va-carousel" id="vaCarousel">
+        <div class="va-track" id="vaTrack">
+            <div class="va-slide">
+                <img src="client-1.jpg" alt="Patrick" />
+                <div class="va-overlay"></div>
+                <div class="va-caption">
+                    <span class="va-name">Patrick</span>
+                    <span class="va-result">Lost 14kg · 12 weeks</span>
+                </div>
+            </div>
+            <div class="va-slide">
+                <img src="client-2.jpg" alt="Ivan" />
+                <div class="va-overlay"></div>
+                <div class="va-caption">
+                    <span class="va-name">Ivan</span>
+                    <span class="va-result">Complete transformation</span>
+                </div>
+            </div>
+            <div class="va-slide">
+                <img src="client-3.jpg" alt="Alvin" />
+                <div class="va-overlay"></div>
+                <div class="va-caption">
+                    <span class="va-name">Alvin</span>
+                    <span class="va-result">Leaner + stronger</span>
+                </div>
+            </div>
+            <div class="va-slide">
+                <img src="client-4.jpg" alt="Jon" />
+                <div class="va-overlay"></div>
+                <div class="va-caption">
+                    <span class="va-name">Jon</span>
+                    <span class="va-result">Reset complete</span>
+                </div>
+            </div>
+            <div class="va-slide">
+                <img src="client-5.jpg" alt="Lester" />
+                <div class="va-overlay"></div>
+                <div class="va-caption">
+                    <span class="va-name">Lester</span>
+                    <span class="va-result">Full body reset</span>
+                </div>
+            </div>
+            <div class="va-slide">
+                <img src="client-6.jpg" alt="Sina" />
+                <div class="va-overlay"></div>
+                <div class="va-caption">
+                    <span class="va-name">Sina</span>
+                    <span class="va-result">Transformed</span>
+                </div>
+            </div>
+            <div class="va-slide">
+                <img src="client-7.jpg" alt="Hyowon" />
+                <div class="va-overlay"></div>
+                <div class="va-caption">
+                    <span class="va-name">Hyowon</span>
+                    <span class="va-result">Reset complete</span>
+                </div>
+            </div>
+            <div class="va-slide">
+                <img src="client-8.jpg" alt="Christina" />
+                <div class="va-overlay"></div>
+                <div class="va-caption">
+                    <span class="va-name">Christina</span>
+                    <span class="va-result">Transformed</span>
+                </div>
+            </div>
+            <div class="va-slide">
+                <img src="client-9.jpg" alt="Client" />
+                <div class="va-overlay"></div>
+                <div class="va-caption">
+                    <span class="va-name">Client</span>
+                    <span class="va-result">Full reset</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="va-controls">
+        <button class="va-btn" id="vaPrev">&#8592;</button>
+        <div class="va-dots" id="vaDots"></div>
+        <button class="va-btn" id="vaNext">&#8594;</button>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     VARIANT B — Editorial masonry grid
+════════════════════════════════════════════ -->
+<div class="variant-label" id="vb">VARIANT B — Editorial Grid</div>
+<section class="variant-b">
+    <div class="vb-head">
+        <span class="lbl">Real results</span>
+        <h2>People who decided<br>to go primal.</h2>
+    </div>
+
+    <div class="vb-grid">
+        <div class="vb-img vb-big-1">
+            <img src="client-2.jpg" alt="Ivan" />
+            <span class="vb-tag">Ivan — transformed</span>
+        </div>
+        <div class="vb-img vb-sm-1">
+            <img src="client-1.jpg" alt="Patrick" />
+            <span class="vb-tag">Patrick</span>
+        </div>
+        <div class="vb-img vb-sm-2">
+            <img src="client-8.jpg" alt="Christina" />
+            <span class="vb-tag">Christina</span>
+        </div>
+        <div class="vb-img vb-sm-3">
+            <img src="client-3.jpg" alt="Alvin" />
+            <span class="vb-tag">Alvin</span>
+        </div>
+        <div class="vb-img vb-sm-4">
+            <img src="client-4.jpg" alt="Jon" />
+            <span class="vb-tag">Jon</span>
+        </div>
+        <div class="vb-img vb-big-2">
+            <img src="client-7.jpg" alt="Hyowon" />
+            <span class="vb-tag">Hyowon</span>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     VARIANT C — Filmstrip horizontal drag
+════════════════════════════════════════════ -->
+<div class="variant-label" id="vc">VARIANT C — Filmstrip</div>
+<section class="variant-c">
+    <div class="vc-head">
+        <div class="vc-head-left">
+            <span class="lbl">Real results</span>
+            <h2>People who decided<br>to go primal.</h2>
+        </div>
+        <span class="vc-count">9 transformations</span>
+    </div>
+
+    <div class="vc-strip-wrap" id="vcStrip">
+        <div class="vc-strip">
+            <div class="vc-frame"><img src="client-1.jpg" alt="Patrick" /><div class="vc-frame-caption"><span class="vc-frame-name">Patrick</span><span class="vc-frame-tag">Reset complete</span></div></div>
+            <div class="vc-frame"><img src="client-2.jpg" alt="Ivan" /><div class="vc-frame-caption"><span class="vc-frame-name">Ivan</span><span class="vc-frame-tag">Full transformation</span></div></div>
+            <div class="vc-frame"><img src="client-3.jpg" alt="Alvin" /><div class="vc-frame-caption"><span class="vc-frame-name">Alvin</span><span class="vc-frame-tag">Leaner + stronger</span></div></div>
+            <div class="vc-frame"><img src="client-4.jpg" alt="Jon" /><div class="vc-frame-caption"><span class="vc-frame-name">Jon</span><span class="vc-frame-tag">Reset complete</span></div></div>
+            <div class="vc-frame"><img src="client-5.jpg" alt="Lester" /><div class="vc-frame-caption"><span class="vc-frame-name">Lester</span><span class="vc-frame-tag">Full reset</span></div></div>
+            <div class="vc-frame"><img src="client-6.jpg" alt="Sina" /><div class="vc-frame-caption"><span class="vc-frame-name">Sina</span><span class="vc-frame-tag">Transformed</span></div></div>
+            <div class="vc-frame"><img src="client-7.jpg" alt="Hyowon" /><div class="vc-frame-caption"><span class="vc-frame-name">Hyowon</span><span class="vc-frame-tag">Reset complete</span></div></div>
+            <div class="vc-frame"><img src="client-8.jpg" alt="Christina" /><div class="vc-frame-caption"><span class="vc-frame-name">Christina</span><span class="vc-frame-tag">Transformed</span></div></div>
+            <div class="vc-frame"><img src="client-9.jpg" alt="Client" /><div class="vc-frame-caption"><span class="vc-frame-name">Client</span><span class="vc-frame-tag">Full reset</span></div></div>
+        </div>
+    </div>
+
+    <div class="vc-hint">
+        <div class="vc-scroll-line"><div class="vc-scroll-thumb" id="vcThumb"></div></div>
+        <span class="vc-hint-txt">← drag to scroll →</span>
+    </div>
+</section>
+
+<div style="height:80px; background:#0C0C0C;"></div>
+
+<script>
+// ── Variant A carousel ──────────────────────────
+(function(){
+    const track = document.getElementById('vaTrack');
+    const prev  = document.getElementById('vaPrev');
+    const next  = document.getElementById('vaNext');
+    const dots  = document.getElementById('vaDots');
+    if (!track) return;
+    const slides = track.querySelectorAll('.va-slide');
+    const total = slides.length;
+    let cur = 0;
+
+    function vis() { return window.innerWidth <= 768 ? 1 : 3; }
+    function maxI() { return Math.max(0, total - vis()); }
+
+    function buildDots() {
+        dots.innerHTML = '';
+        for (let i = 0; i <= maxI(); i++) {
+            const d = document.createElement('button');
+            d.className = 'va-dot' + (i === cur ? ' active' : '');
+            d.addEventListener('click', () => goTo(i));
+            dots.appendChild(d);
+        }
+    }
+
+    function goTo(i) {
+        cur = Math.max(0, Math.min(i, maxI()));
+        const w = slides[0].getBoundingClientRect().width + 4;
+        track.style.transform = `translateX(-${cur * w}px)`;
+        prev.disabled = cur === 0;
+        next.disabled = cur >= maxI();
+        dots.querySelectorAll('.va-dot').forEach((d, j) => d.classList.toggle('active', j === cur));
+    }
+
+    prev.addEventListener('click', () => goTo(cur - 1));
+    next.addEventListener('click', () => goTo(cur + 1));
+    buildDots(); goTo(0);
+    window.addEventListener('resize', () => { buildDots(); goTo(Math.min(cur, maxI())); });
+
+    let sx = 0;
+    track.addEventListener('touchstart', e => sx = e.touches[0].clientX, { passive: true });
+    track.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - sx;
+        if (Math.abs(dx) > 40) goTo(dx < 0 ? cur + 1 : cur - 1);
+    }, { passive: true });
+})();
+
+// ── Variant C filmstrip drag ────────────────────
+(function(){
+    const strip = document.getElementById('vcStrip');
+    const thumb = document.getElementById('vcThumb');
+    if (!strip) return;
+
+    let isDown = false, startX = 0, scrollLeft = 0;
+
+    strip.addEventListener('mousedown', e => {
+        isDown = true; strip.classList.add('grabbing');
+        startX = e.pageX - strip.offsetLeft;
+        scrollLeft = strip.scrollLeft;
+    });
+    strip.addEventListener('mouseleave', () => { isDown = false; strip.classList.remove('grabbing'); });
+    strip.addEventListener('mouseup', () => { isDown = false; strip.classList.remove('grabbing'); });
+    strip.addEventListener('mousemove', e => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - strip.offsetLeft;
+        strip.scrollLeft = scrollLeft - (x - startX) * 1.5;
+    });
+
+    strip.addEventListener('scroll', () => {
+        const pct = strip.scrollLeft / (strip.scrollWidth - strip.clientWidth);
+        thumb.style.left = (pct * 70) + '%';
+    });
+})();
+</script>
+</body>
+</html>
