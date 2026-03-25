@@ -559,74 +559,74 @@
         }
         .bonus-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 10%; }
 
-        /* ── PROOF / CAROUSEL -LIGHT ──────────────────── */
-        .proof-head { margin-bottom: 48px; }
-        .proof-head .label { display: block; margin-bottom: 20px; }
+        /* ── PROOF / FILMSTRIP -DARK ──────────────────── */
+        .proof-head { margin-bottom: 48px; display: flex; align-items: flex-end; justify-content: space-between; }
+        .proof-head-left .label { display: block; margin-bottom: 16px; }
         .proof-head h2 {
             font-size: clamp(28px, 4vw, 48px);
             font-weight: 800;
         }
+        .proof-count { font-size: 11px; color: var(--muted-dark); letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
 
-        /* Carousel */
-        .carousel-wrap { position: relative; overflow: hidden; }
-        .carousel-track {
+        /* Filmstrip */
+        .filmstrip-outer {
+            overflow: hidden;
+            cursor: grab;
+            position: relative;
+        }
+        .filmstrip-outer.grabbing { cursor: grabbing; }
+        .filmstrip-outer::after {
+            content: '';
+            position: absolute; inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(to right, var(--dark) 0%, transparent 80px),
+                linear-gradient(to left,  var(--dark) 0%, transparent 80px);
+        }
+        .filmstrip-track {
             display: flex;
-            gap: 3px;
-            transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            gap: 4px;
             will-change: transform;
         }
-        .carousel-slide {
-            flex: 0 0 calc(33.333% - 2px);
-            min-width: calc(33.333% - 2px);
+        .film-frame {
+            flex: 0 0 auto;
+            height: 66vh;
+            min-height: 360px;
+            max-height: 580px;
+            position: relative;
+            overflow: hidden;
         }
-        .carousel-slide img {
-            width: 100%;
-            aspect-ratio: 3/4;
-            object-fit: cover;
-            object-position: center top;
+        .film-frame img {
+            height: 100%;
+            width: auto;
             display: block;
+            object-fit: cover;
         }
-        .carousel-controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 36px;
+        .film-frame::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(12,12,12,0.8) 0%, transparent 45%);
         }
-        .carousel-btn {
-            width: 40px; height: 40px;
-            background: none;
-            border: 1px solid var(--border-light);
-            color: var(--muted-light);
-            font-size: 16px;
-            cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            transition: all 0.2s;
-            border-radius: 2px;
-            line-height: 1;
+        .film-caption {
+            position: absolute; bottom: 18px; left: 18px; z-index: 1;
         }
-        .carousel-btn:hover { border-color: var(--gold); color: var(--gold); }
-        .carousel-btn:disabled { opacity: 0.3; cursor: default; }
-        .carousel-dots { display: flex; gap: 7px; align-items: center; }
-        .carousel-dot {
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            background: #ccc;
-            transition: all 0.25s;
-            cursor: pointer;
-            border: none;
-        }
-        .carousel-dot.active { background: var(--gold); width: 20px; border-radius: 3px; }
+        .film-name { display: block; font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 3px; }
+        .film-tag  { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
 
-        @media (max-width: 960px) {
-            .carousel-slide { flex: 0 0 calc(50% - 1.5px); min-width: calc(50% - 1.5px); }
+        .filmstrip-bar {
+            display: flex; align-items: center; gap: 20px; margin-top: 24px;
         }
-        @media (max-width: 640px) {
-            .carousel-slide { flex: 0 0 calc(72% - 1.5px); min-width: calc(72% - 1.5px); }
+        .filmstrip-line {
+            height: 1px; flex: 1; max-width: 280px;
+            background: rgba(255,255,255,0.08); position: relative; overflow: hidden;
         }
+        .filmstrip-thumb {
+            position: absolute; top: 0; left: 0; height: 100%; width: 33%;
+            background: var(--gold); transition: left 0.1s linear;
+        }
+        .filmstrip-hint { font-size: 11px; color: var(--muted-dark); letter-spacing: 0.08em; text-transform: uppercase; }
 
         .pullquote-wrap {
-            background: #fff;
             padding: 64px 28px;
             text-align: center;
         }
@@ -637,11 +637,10 @@
             max-width: 640px;
             margin: 0 auto 20px;
             line-height: 1.5;
-            color: var(--text-light);
         }
         .pullquote-text::before { content: '\201C'; color: var(--gold); }
         .pullquote-text::after  { content: '\201D'; color: var(--gold); }
-        .pullquote-attr { font-size: 13px; color: var(--muted-light); }
+        .pullquote-attr { font-size: 13px; }
 
         /* ── PRICING -DARK ─────────────────────────── */
         .pricing-head { text-align: center; margin-bottom: 52px; }
@@ -1510,39 +1509,54 @@
 </section>
 
 
-<!-- ─── PROOF - LIGHT ────────────────────────────────
-     Photos: before/after client portrait photos (2:3 format).
-─────────────────────────────────────────────────── -->
-<section class="section bg-light">
+<!-- ─── PROOF - DARK FILMSTRIP ─────────────────────── -->
+<section class="section bg-dark" id="proof">
     <div class="container">
         <div class="proof-head">
-            <span class="label">Real results</span>
-            <h2>People who decided<br>to go primal.</h2>
-        </div>
-        <div class="carousel-wrap" id="proofCarousel">
-            <div class="carousel-track" id="carouselTrack">
-                <div class="carousel-slide"><img src="client-1.jpg" alt="Patrick — transformation" /></div>
-                <div class="carousel-slide"><img src="client-2.jpg" alt="Ivan — transformation" /></div>
-                <div class="carousel-slide"><img src="client-3.jpg" alt="Alvin — transformation" /></div>
-                <div class="carousel-slide"><img src="client-4.jpg" alt="Jon — transformation" /></div>
-                <div class="carousel-slide"><img src="client-5.jpg" alt="Lester — transformation" /></div>
-                <div class="carousel-slide"><img src="client-6.jpg" alt="Sina — transformation" /></div>
-                <div class="carousel-slide"><img src="client-7.jpg" alt="Hyowon — transformation" /></div>
-                <div class="carousel-slide"><img src="client-8.jpg" alt="Christina — transformation" /></div>
-                <div class="carousel-slide"><img src="client-9.jpg" alt="Client — transformation" /></div>
+            <div class="proof-head-left">
+                <span class="label">Real results</span>
+                <h2>People who decided<br>to go primal.</h2>
             </div>
-        </div>
-        <div class="carousel-controls">
-            <button class="carousel-btn" id="prevBtn" aria-label="Previous">&#8592;</button>
-            <div class="carousel-dots" id="carouselDots"></div>
-            <button class="carousel-btn" id="nextBtn" aria-label="Next">&#8594;</button>
+            <span class="proof-count">9 transformations</span>
         </div>
     </div>
-    <div class="pullquote-wrap" style="margin-top: 2px;">
+
+    <div class="filmstrip-outer" id="filmstripOuter">
+        <div class="filmstrip-track" id="filmstripTrack">
+            <!-- original set -->
+            <div class="film-frame"><img src="client-1.jpg" alt="Patrick" /><div class="film-caption"><span class="film-name">Patrick</span><span class="film-tag">Reset complete</span></div></div>
+            <div class="film-frame"><img src="client-2.jpg" alt="Ivan" /><div class="film-caption"><span class="film-name">Ivan</span><span class="film-tag">Full transformation</span></div></div>
+            <div class="film-frame"><img src="client-3.jpg" alt="Alvin" /><div class="film-caption"><span class="film-name">Alvin</span><span class="film-tag">Leaner + stronger</span></div></div>
+            <div class="film-frame"><img src="client-4.jpg" alt="Jon" /><div class="film-caption"><span class="film-name">Jon</span><span class="film-tag">Reset complete</span></div></div>
+            <div class="film-frame"><img src="client-5.jpg" alt="Lester" /><div class="film-caption"><span class="film-name">Lester</span><span class="film-tag">Full reset</span></div></div>
+            <div class="film-frame"><img src="client-6.jpg" alt="Sina" /><div class="film-caption"><span class="film-name">Sina</span><span class="film-tag">Transformed</span></div></div>
+            <div class="film-frame"><img src="client-7.jpg" alt="Hyowon" /><div class="film-caption"><span class="film-name">Hyowon</span><span class="film-tag">Reset complete</span></div></div>
+            <div class="film-frame"><img src="client-8.jpg" alt="Christina" /><div class="film-caption"><span class="film-name">Christina</span><span class="film-tag">Transformed</span></div></div>
+            <div class="film-frame"><img src="client-9.jpg" alt="Client" /><div class="film-caption"><span class="film-name">Client</span><span class="film-tag">Full reset</span></div></div>
+            <!-- duplicate for seamless loop -->
+            <div class="film-frame" aria-hidden="true"><img src="client-1.jpg" alt="" /><div class="film-caption"><span class="film-name">Patrick</span><span class="film-tag">Reset complete</span></div></div>
+            <div class="film-frame" aria-hidden="true"><img src="client-2.jpg" alt="" /><div class="film-caption"><span class="film-name">Ivan</span><span class="film-tag">Full transformation</span></div></div>
+            <div class="film-frame" aria-hidden="true"><img src="client-3.jpg" alt="" /><div class="film-caption"><span class="film-name">Alvin</span><span class="film-tag">Leaner + stronger</span></div></div>
+            <div class="film-frame" aria-hidden="true"><img src="client-4.jpg" alt="" /><div class="film-caption"><span class="film-name">Jon</span><span class="film-tag">Reset complete</span></div></div>
+            <div class="film-frame" aria-hidden="true"><img src="client-5.jpg" alt="" /><div class="film-caption"><span class="film-name">Lester</span><span class="film-tag">Full reset</span></div></div>
+            <div class="film-frame" aria-hidden="true"><img src="client-6.jpg" alt="" /><div class="film-caption"><span class="film-name">Sina</span><span class="film-tag">Transformed</span></div></div>
+            <div class="film-frame" aria-hidden="true"><img src="client-7.jpg" alt="" /><div class="film-caption"><span class="film-name">Hyowon</span><span class="film-tag">Reset complete</span></div></div>
+            <div class="film-frame" aria-hidden="true"><img src="client-8.jpg" alt="" /><div class="film-caption"><span class="film-name">Christina</span><span class="film-tag">Transformed</span></div></div>
+            <div class="film-frame" aria-hidden="true"><img src="client-9.jpg" alt="" /><div class="film-caption"><span class="film-name">Client</span><span class="film-tag">Full reset</span></div></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="filmstrip-bar">
+            <div class="filmstrip-line"><div class="filmstrip-thumb" id="filmThumb"></div></div>
+            <span class="filmstrip-hint">Drag to explore</span>
+        </div>
+    </div>
+
+    <div class="pullquote-wrap" style="margin-top: 80px; background: var(--dark-2);">
         <div class="container--narrow">
-            <!-- QUOTE: Replace with strongest real client testimonial -->
-            <p class="pullquote-text">I've tried everything over the past 10 years. This is the first time I actually understood why nothing was working - and the first time something did.</p>
-            <p class="pullquote-attr">- Client name · Age · Location</p>
+            <p class="pullquote-text" style="color: var(--text-dark);">I've tried everything over the past 10 years. This is the first time I actually understood why nothing was working — and the first time something did.</p>
+            <p class="pullquote-attr" style="color: var(--muted-dark);">— Client name · Age · Location</p>
         </div>
     </div>
 </section>
@@ -1678,65 +1692,69 @@
         if (!wasOpen) item.classList.add('open');
     }
 
-    // ── Proof Carousel ──────────────────────────────
+    // ── Filmstrip auto-scroll ───────────────────────
     (function() {
-        const track = document.getElementById('carouselTrack');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const dotsContainer = document.getElementById('carouselDots');
-        if (!track) return;
+        const outer = document.getElementById('filmstripOuter');
+        const track = document.getElementById('filmstripTrack');
+        const thumb = document.getElementById('filmThumb');
+        if (!outer || !track) return;
 
-        const slides = track.querySelectorAll('.carousel-slide');
-        const total = slides.length;
-        let current = 0;
+        const SPEED = 0.6; // px per frame
+        let pos = 0;
+        let paused = false;
+        let raf;
 
-        function slidesVisible() {
-            if (window.innerWidth <= 640) return 1;
-            if (window.innerWidth <= 960) return 2;
-            return 3;
-        }
+        // Half the track = width of original 9 frames (for seamless loop)
+        function halfWidth() { return track.scrollWidth / 2; }
 
-        function maxIndex() { return Math.max(0, total - slidesVisible()); }
-
-        // Build dots (one per step)
-        function buildDots() {
-            dotsContainer.innerHTML = '';
-            const steps = maxIndex() + 1;
-            for (let i = 0; i < steps; i++) {
-                const dot = document.createElement('button');
-                dot.className = 'carousel-dot' + (i === current ? ' active' : '');
-                dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-                dot.addEventListener('click', () => goTo(i));
-                dotsContainer.appendChild(dot);
+        function step() {
+            if (!paused) {
+                pos += SPEED;
+                if (pos >= halfWidth()) pos -= halfWidth();
+                track.style.transform = 'translateX(-' + pos + 'px)';
+                if (thumb) {
+                    const pct = (pos / halfWidth()) * 67;
+                    thumb.style.left = pct + '%';
+                }
             }
+            raf = requestAnimationFrame(step);
         }
+        raf = requestAnimationFrame(step);
 
-        function goTo(index) {
-            current = Math.max(0, Math.min(index, maxIndex()));
-            const slideWidth = slides[0].getBoundingClientRect().width + 3; // gap=3px
-            track.style.transform = 'translateX(-' + (current * slideWidth) + 'px)';
-            prevBtn.disabled = current === 0;
-            nextBtn.disabled = current >= maxIndex();
-            dotsContainer.querySelectorAll('.carousel-dot').forEach((d, i) => {
-                d.classList.toggle('active', i === current);
-            });
-        }
+        // Pause on hover
+        outer.addEventListener('mouseenter', () => paused = true);
+        outer.addEventListener('mouseleave', () => paused = false);
 
-        prevBtn.addEventListener('click', () => goTo(current - 1));
-        nextBtn.addEventListener('click', () => goTo(current + 1));
+        // Drag support
+        let isDragging = false, dragStartX = 0, dragStartPos = 0;
+        outer.addEventListener('mousedown', e => {
+            isDragging = true; paused = true;
+            dragStartX = e.clientX; dragStartPos = pos;
+            outer.classList.add('grabbing');
+        });
+        window.addEventListener('mouseup', () => {
+            if (isDragging) { isDragging = false; paused = false; outer.classList.remove('grabbing'); }
+        });
+        window.addEventListener('mousemove', e => {
+            if (!isDragging) return;
+            pos = dragStartPos - (e.clientX - dragStartX);
+            const hw = halfWidth();
+            if (pos < 0) pos += hw;
+            if (pos >= hw) pos -= hw;
+        });
 
-        buildDots();
-        goTo(0);
-
-        window.addEventListener('resize', () => { buildDots(); goTo(Math.min(current, maxIndex())); });
-
-        // Touch/swipe
-        let startX = 0;
-        track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-        track.addEventListener('touchend', e => {
-            const dx = e.changedTouches[0].clientX - startX;
-            if (Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1);
+        // Touch support
+        let touchStartX = 0, touchStartPos = 0;
+        outer.addEventListener('touchstart', e => {
+            paused = true; touchStartX = e.touches[0].clientX; touchStartPos = pos;
         }, { passive: true });
+        outer.addEventListener('touchmove', e => {
+            pos = touchStartPos - (e.touches[0].clientX - touchStartX);
+            const hw = halfWidth();
+            if (pos < 0) pos += hw;
+            if (pos >= hw) pos -= hw;
+        }, { passive: true });
+        outer.addEventListener('touchend', () => { paused = false; });
     })();
 </script>
 </body>
