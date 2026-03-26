@@ -625,6 +625,20 @@
             background: var(--gold); transition: left 0.1s linear;
         }
         .filmstrip-hint { font-size: 11px; color: var(--muted-dark); letter-spacing: 0.08em; text-transform: uppercase; }
+        .filmstrip-mobile-hint {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: var(--muted-dark);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        @media (max-width: 768px) {
+            .filmstrip-mobile-hint { display: block; }
+            .filmstrip-bar { display: none; }
+            .film-frame { height: 75vw; min-height: 280px; max-height: 420px; }
+        }
 
         .pullquote-wrap {
             padding: 64px 28px;
@@ -772,21 +786,7 @@
         }
         .faq-item.open .faq-a { max-height: 300px; padding-bottom: 20px; }
 
-        /* ── BRIDGE -DARK ──────────────────────────── */
-        .bridge { text-align: center; }
-        .bridge .label { display: block; margin-bottom: 16px; }
-        .bridge h2 {
-            font-size: clamp(26px, 3.5vw, 46px);
-            font-weight: 800;
-            max-width: 540px;
-            margin: 0 auto 20px;
-        }
-        .bridge p {
-            font-size: 16px;
-            color: var(--muted-dark);
-            max-width: 440px;
-            margin: 0 auto 40px;
-        }
+        /* ── BRIDGE -DARK (kept for btn-outline) ──────── */
         .btn-outline {
             display: inline-block;
             border: 1px solid var(--gold-border);
@@ -799,48 +799,65 @@
             transition: all 0.2s;
         }
         .btn-outline:hover { background: var(--gold); border-color: var(--gold); color: #000; }
-        .bridge-sub { margin-top: 14px; font-size: 12px; color: var(--muted-dark); }
 
-        /* ── APP SECTION -DARK ─────────────────────── */
-        .app-section { border-top: 1px solid #1e1e1e; padding: 72px 0; }
-        .app-grid {
+        /* ── NEXT STEPS SECTION -DARK ──────────────────── */
+        .next-section { border-top: 1px solid var(--border-dark); }
+        .next-head {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+        .next-head .label { display: block; margin-bottom: 16px; }
+        .next-head h2 {
+            font-size: clamp(28px, 4vw, 48px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+        .next-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 64px;
-            align-items: center;
+            gap: 20px;
         }
-        .app-text .label { display: block; margin-bottom: 16px; }
-        .app-headline {
-            font-size: clamp(24px, 3vw, 42px);
+        .next-card {
+            background: var(--dark-2);
+            border: 1px solid var(--border-dark);
+            border-top: 3px solid var(--gold);
+            padding: 44px 44px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .next-card-tag {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+        .next-card-title {
+            font-size: clamp(22px, 2.5vw, 30px);
             font-weight: 800;
             letter-spacing: -0.025em;
-            line-height: 1.1;
-            margin-bottom: 20px;
+            line-height: 1.15;
+            margin-bottom: 16px;
         }
-        .app-body {
-            font-size: 16px;
+        .next-card-body {
+            font-size: 15px;
             color: var(--muted-dark);
             line-height: 1.72;
-            margin-bottom: 32px;
-            max-width: 420px;
+            margin-bottom: 0;
         }
-        .app-phones {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            align-items: flex-end;
+        .next-card-top { margin-bottom: 40px; }
+        .next-card-note {
+            font-size: 12px;
+            color: var(--muted-dark);
+            margin-top: 12px;
+            text-align: center;
         }
-        .phone-mock {
-            width: 38%;
-            aspect-ratio: 9/19;
-            border-radius: 14px;
-            border: 1px solid #2a2a2a;
-        }
-        .phone-mock--back { background: var(--dark-3); }
-        .phone-mock--front { background: var(--dark-2); margin-bottom: 20px; }
         @media (max-width: 768px) {
-            .app-grid { grid-template-columns: 1fr; }
-            .app-phones { display: none; }
+            .next-grid { grid-template-columns: 1fr; }
+            .next-card { padding: 32px 28px; }
         }
 
         /* ── STATS STRIP -DARK ────────────────────── */
@@ -1094,18 +1111,31 @@
         .ba-badge.before { background: rgba(12,12,12,0.75); color: var(--muted-dark); }
         .ba-badge.after  { background: var(--gold); color: #000; }
         .ba-caption {
-            padding: 16px 4px 0;
-            font-size: 13px;
+            padding: 14px 4px 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            letter-spacing: -0.01em;
+            line-height: 1.4;
+        }
+        .ba-caption-sub {
+            display: block;
+            font-size: 12px;
+            font-weight: 400;
             color: var(--muted-dark);
-            letter-spacing: 0.04em;
+            margin-top: 3px;
+            letter-spacing: 0;
         }
         .ba-note {
             text-align: center;
-            margin-top: 44px;
-            font-size: clamp(16px, 1.8vw, 20px);
+            margin-top: 40px;
+            font-size: clamp(15px, 1.8vw, 19px);
             font-weight: 700;
             color: var(--text-dark);
             letter-spacing: -0.01em;
+            padding: 20px 28px;
+            background: var(--dark-2);
+            border-top: 1px solid var(--border-dark);
         }
         .ba-note span { color: var(--gold); }
         @media (max-width: 640px) {
@@ -1263,16 +1293,20 @@
     </div>
     <div class="hero-stats">
         <div class="hero-stat">
-            <span class="hero-stat-num">25M+</span>
-            <span class="hero-stat-label">Monthly reach</span>
+            <span class="hero-stat-num">1.3M</span>
+            <span class="hero-stat-label">Followers</span>
         </div>
         <div class="hero-stat">
             <span class="hero-stat-num">500+</span>
-            <span class="hero-stat-label">Transformations</span>
+            <span class="hero-stat-label">Transformed</span>
         </div>
         <div class="hero-stat">
-            <span class="hero-stat-num">12 years</span>
-            <span class="hero-stat-label">Experience</span>
+            <span class="hero-stat-num">77k</span>
+            <span class="hero-stat-label">Community</span>
+        </div>
+        <div class="hero-stat">
+            <span class="hero-stat-num">100%</span>
+            <span class="hero-stat-label">Natural</span>
         </div>
     </div>
 </section>
@@ -1412,14 +1446,14 @@
                     <img src="jerome-before.jpg" alt="Jerome before" />
                     <span class="ba-badge before">Before</span>
                 </div>
-                <p class="ba-caption">Addicted. Exhausted. Going nowhere.</p>
+                <p class="ba-caption">Addicted. Exhausted. Going nowhere.<span class="ba-caption-sub">Trapped in cycles that wouldn't break.</span></p>
             </div>
             <div class="ba-card">
                 <div class="ba-card-img">
                     <img src="jerome-mirror.jpg" alt="Jerome after" style="object-position: center 20%;" />
                     <span class="ba-badge after">After</span>
                 </div>
-                <p class="ba-caption">Grounded. Strong. Primal.</p>
+                <p class="ba-caption">Grounded. Strong. Primal.<span class="ba-caption-sub">Three systems reset. Fully rebuilt.</span></p>
             </div>
         </div>
         <p class="ba-note">This is what resetting <span>all three systems</span> actually looks like.</p>
@@ -1430,7 +1464,7 @@
 <!-- ─── THE SYSTEM - DARK ────────────────────────────
      Photos: ebook covers (see comments on each card).
 ─────────────────────────────────────────────────── -->
-<section class="section bg-dark" id="the-system">
+<section class="section bg-dark" id="the-system" style="padding-top: 56px;">
     <div class="container">
         <div class="product-intro">
             <span class="label">The system</span>
@@ -1442,7 +1476,7 @@
             <!-- Card 1: Primal Protocol eBook -->
             <div class="product-card">
                 <div class="product-card-img">
-                    <img src="jerome-protocol.jpg" alt="Primal Protocol eBook" />
+                    <img src="guide-protocol.jpg" alt="Primal Protocol eBook" />
                 </div>
                 <div class="product-card-body">
                     <div class="product-tag">eBook</div>
@@ -1454,7 +1488,7 @@
             <!-- Card 2: Primal Training Playbook -->
             <div class="product-card">
                 <div class="product-card-img">
-                    <img src="jerome-training.jpg" alt="Primal Training Playbook" />
+                    <img src="guide-training.jpg" alt="Primal Training Playbook" />
                 </div>
                 <div class="product-card-body">
                     <div class="product-tag">Playbook</div>
@@ -1466,7 +1500,7 @@
             <!-- Card 3: Primal Meal Prep Guide -->
             <div class="product-card">
                 <div class="product-card-img">
-                    <img src="jerome-meals.jpg" alt="Primal Meal Prep Guide" />
+                    <img src="guide-meal.jpg" alt="Primal Meal Prep Guide" />
                 </div>
                 <div class="product-card-body">
                     <div class="product-tag">Guide</div>
@@ -1483,9 +1517,9 @@
         <div class="value-stack">
             <p class="vs-title">Everything in your Primal Reset</p>
             <ul class="vs-items">
-                <li><span class="vs-check">✓</span><span>Primal Protocol -the full transformation framework</span></li>
-                <li><span class="vs-check">✓</span><span>Primal Training Playbook -train with your biology</span></li>
-                <li><span class="vs-check">✓</span><span>Primal Meal Prep Guide -eat for your system</span></li>
+                <li><span class="vs-check">✓</span><span>Primal Protocol eBook</span></li>
+                <li><span class="vs-check">✓</span><span>Primal Training Playbook</span></li>
+                <li><span class="vs-check">✓</span><span>Primal Meal Prep Guide</span></li>
                 <li><span class="vs-check">✓</span><span>Primal Mindset Framework</span><span class="vs-badge">Free</span></li>
                 <li><span class="vs-check">✓</span><span>Lifetime access + all future updates</span></li>
             </ul>
@@ -1502,7 +1536,7 @@
                 <p>After years trapped in addiction - and finally breaking free - I built a set of mental tools that make real, lasting consistency possible, even under serious pressure. <strong style="color:var(--text-dark);">This is what makes the whole system stick.</strong></p>
             </div>
             <div class="bonus-img">
-                <img src="jerome-mindset.jpg" alt="Jerome Tan" />
+                <img src="guide-mindset.jpg" alt="Jerome Tan" />
             </div>
         </div>
     </div>
@@ -1551,6 +1585,7 @@
             <div class="filmstrip-line"><div class="filmstrip-thumb" id="filmThumb"></div></div>
             <span class="filmstrip-hint">Drag to explore</span>
         </div>
+        <p class="filmstrip-mobile-hint">← swipe to explore →</p>
     </div>
 
     <div class="pullquote-wrap" style="margin-top: 80px; background: var(--dark-2);">
@@ -1581,10 +1616,10 @@
                 </div>
                 <div class="pricing-body">
                     <ul class="pricing-items">
-                        <li><span class="check">✓</span><span>Primal Protocol eBook - the full framework</span></li>
-                        <li><span class="check">✓</span><span>Primal Training Playbook - train smarter, not longer</span></li>
-                        <li><span class="check">✓</span><span>Primal Meal Prep Guide - eat for your biology</span></li>
-                        <li><span class="check">✓</span><span>Primal Mindset Framework - the mental layer</span></li>
+                        <li><span class="check">✓</span><span>Primal Protocol eBook</span></li>
+                        <li><span class="check">✓</span><span>Primal Training Playbook</span></li>
+                        <li><span class="check">✓</span><span>Primal Meal Prep Guide</span></li>
+                        <li><span class="check">✓</span><span>Primal Mindset Framework <span style="font-size:10px;font-weight:700;background:var(--gold);color:#000;padding:2px 6px;border-radius:2px;margin-left:4px;letter-spacing:0.05em;">FREE</span></span></li>
                         <li><span class="check">✓</span><span>Lifetime access + all future updates</span></li>
                     </ul>
                     <a href="https://www.primal1on1.com/resources/payment/eyJpbnRlZ3JhdGlvbkRhdGEiOnsicGxhbklkcyI6WyI0ZWQxZDNmMS00ZWNkLTQ2ZDktOTQzNi1kODgzNDQ1ZTE2NmYiXX0sInBsYW5JZCI6IjRlZDFkM2YxLTRlY2QtNDZkOS05NDM2LWQ4ODM0NDVlMTY2ZiJ9" class="btn-primary--full">Get the Primal Reset →</a>
@@ -1644,30 +1679,38 @@
 </section>
 
 
-<!-- ─── BRIDGE → COACHING - DARK ─────────────────── -->
-<section class="section bridge bg-dark2">
+<!-- ─── WHAT'S NEXT - DARK ────────────────────────── -->
+<section class="section bg-dark next-section">
     <div class="container">
-        <span class="label">Ready to accelerate?</span>
-        <h2>The Reset is the foundation.<br>1-on-1 is the fast track.</h2>
-        <p>The system works on its own. But if you want me building your exact protocol, adjusting it week by week, and holding you accountable in real time — that's what private coaching does. No guesswork. No plateaus. Just results.</p>
-        <a href="https://www.primal1on1.com/coaching" class="btn-outline">Book a Free Coaching Call</a>
-        <p class="bridge-sub">Limited spots. Application required.</p>
-    </div>
-</section>
-
-
-<!-- ─── APP SECTION - DARK ───────────────────────── -->
-<section class="section app-section bg-dark">
-    <div class="container app-grid">
-        <div class="app-text">
-            <span class="label">Available on iOS &amp; Android</span>
-            <h2 class="app-headline">Everything in one place.<br>The Primal App.</h2>
-            <p class="app-body">Track your workouts, log your meals, follow the protocols — all from your phone. Your Reset system, always with you. And when you're ready to level up, coaching is one tap away.</p>
-            <a href="https://studio.com/apps/jerome/primal" class="btn-outline" target="_blank">Download the App</a>
+        <div class="next-head">
+            <span class="label">Take it further</span>
+            <h2>The Reset is step one.<br>Here's what comes next.</h2>
         </div>
-        <div class="app-phones" aria-hidden="true">
-            <div class="phone-mock phone-mock--back"></div>
-            <div class="phone-mock phone-mock--front"></div>
+        <div class="next-grid">
+            <!-- 1-on-1 Coaching -->
+            <div class="next-card">
+                <div class="next-card-top">
+                    <span class="next-card-tag">Private Coaching</span>
+                    <h3 class="next-card-title">1-on-1 with Jerome</h3>
+                    <p class="next-card-body">You get the system. Private coaching collapses the timeline. I build your exact protocol, adjust week by week, and hold you accountable in real time. No plateaus. No guesswork. Just results — faster.</p>
+                </div>
+                <div class="next-card-cta">
+                    <a href="https://www.primal1on1.com/coaching" class="btn-primary" style="display:block; text-align:center;">Book a Free Call →</a>
+                    <p class="next-card-note">Limited spots · Application required</p>
+                </div>
+            </div>
+            <!-- Primal App -->
+            <div class="next-card">
+                <div class="next-card-top">
+                    <span class="next-card-tag">iOS &amp; Android</span>
+                    <h3 class="next-card-title">The Primal App</h3>
+                    <p class="next-card-body">Track workouts, log meals, follow the protocols — all in one place. Your Reset system always in your pocket. And when you're ready to go further, coaching is one tap away.</p>
+                </div>
+                <div class="next-card-cta">
+                    <a href="https://studio.com/apps/jerome/primal" class="btn-primary" style="display:block; text-align:center;" target="_blank">Download the App →</a>
+                    <p class="next-card-note">Free to download · Works with the Reset</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
