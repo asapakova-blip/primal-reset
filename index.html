@@ -580,8 +580,8 @@
             position: absolute; inset: 0;
             pointer-events: none;
             background:
-                linear-gradient(to right, var(--dark) 0%, transparent 80px),
-                linear-gradient(to left,  var(--dark) 0%, transparent 80px);
+                linear-gradient(to right, var(--dark) 0%, transparent 40px),
+                linear-gradient(to left,  var(--dark) 0%, transparent 40px);
         }
         .filmstrip-track {
             display: flex;
@@ -605,7 +605,7 @@
         .film-frame::after {
             content: '';
             position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(12,12,12,0.8) 0%, transparent 45%);
+            background: linear-gradient(to top, rgba(12,12,12,0.55) 0%, transparent 35%);
         }
         .film-caption {
             position: absolute; bottom: 18px; left: 18px; z-index: 1;
@@ -1109,6 +1109,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4px;
+            align-items: start;
         }
         .ba-card { position: relative; overflow: hidden; }
         .ba-card-img {
@@ -1442,7 +1443,7 @@
 <!-- ─── JEROME INTRO - DARK ────────────────────────────
      Photo: Jerome's confident "after" shot - outdoor, strong, grounded.
 ─────────────────────────────────────────────────── -->
-<section class="section bg-dark2">
+<section class="section bg-dark2" style="padding-top: 40px;">
     <div class="container">
         <div class="jerome-intro-grid">
             <div class="jerome-photo">
@@ -1481,10 +1482,16 @@
             </div>
         </div>
         <p class="ba-note">This is what resetting <span>all three systems</span> actually looks like.</p>
-        <p class="jerome-natural" style="margin-top: 20px; justify-content: center;"><span class="jerome-natural-badge">100% Natural</span> No steroids. No shortcuts. Every transformation here is the result of resetting all three systems — nothing else.</p>
+        <p class="jerome-natural" style="margin-top: 20px; justify-content: center;"><span class="jerome-natural-badge">100% Natural</span> No steroids. No shortcuts. Every transformation here is the result of resetting all three systems.</p>
     </div>
 </section>
 
+
+<!-- ─── CTA MOMENT ─────────────────────────────────── -->
+<div style="background: var(--dark-2); text-align: center; padding: 40px 28px; border-top: 1px solid var(--border-dark);">
+    <a href="https://www.primal1on1.com/resources/payment/eyJpbnRlZ3JhdGlvbkRhdGEiOnsicGxhbklkcyI6WyI0ZWQxZDNmMS00ZWNkLTQ2ZDktOTQzNi1kODgzNDQ1ZTE2NmYiXX0sInBsYW5JZCI6IjRlZDFkM2YxLTRlY2QtNDZkOS05NDM2LWQ4ODM0NDVlMTY2ZiJ9" class="btn-primary">Get the Primal Reset →</a>
+    <p style="font-size: 12px; color: var(--muted-dark); margin-top: 10px;">One-time payment · Instant access · No subscriptions</p>
+</div>
 
 <!-- ─── THE SYSTEM - DARK ────────────────────────────
      Photos: ebook covers (see comments on each card).
@@ -1576,7 +1583,6 @@
                 <span class="label">Real results</span>
                 <h2>People who decided<br>to go primal.</h2>
             </div>
-            <span class="proof-count">9 transformations</span>
         </div>
     </div>
 
@@ -1605,22 +1611,20 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="filmstrip-bar">
-            <div class="filmstrip-line"><div class="filmstrip-thumb" id="filmThumb"></div></div>
-            <span class="filmstrip-hint">Drag to explore</span>
-        </div>
-        <p class="filmstrip-mobile-hint">← swipe to explore →</p>
-    </div>
-
-    <div class="pullquote-wrap" style="margin-top: 40px; background: var(--dark-2);">
+    <div class="pullquote-wrap" style="margin-top: 32px; background: transparent;">
         <div class="container--narrow">
             <p class="pullquote-text" style="color: var(--text-dark);">I've tried everything over the past 10 years. This is the first time I actually understood why nothing was working — and the first time something did.</p>
-            <p class="pullquote-attr" style="color: var(--muted-dark);">— Christina · 34 · Atlanta, Georgia</p>
+            <p class="pullquote-attr" style="color: var(--muted-dark);">— Marcus · 38 · Singapore</p>
         </div>
     </div>
 </section>
 
+
+<!-- ─── SOCIAL PROOF BAR ─────────────────────────────── -->
+<div style="background: var(--dark-2); text-align: center; padding: 28px 28px; border-top: 1px solid var(--border-dark); border-bottom: 1px solid var(--border-dark);">
+    <p style="font-size: 18px; color: var(--gold); letter-spacing: 0.04em; margin-bottom: 6px;">★★★★★</p>
+    <p style="font-size: 14px; color: var(--text-dark);">Rated 4.9/5 · Joined by <strong>500+ people</strong> worldwide</p>
+</div>
 
 <!-- ─── PRICING - DARK ──────────────────────────────── -->
 <section class="section bg-dark" id="get-reset">
@@ -1649,6 +1653,10 @@
                     </ul>
                     <a href="https://www.primal1on1.com/resources/payment/eyJpbnRlZ3JhdGlvbkRhdGEiOnsicGxhbklkcyI6WyI0ZWQxZDNmMS00ZWNkLTQ2ZDktOTQzNi1kODgzNDQ1ZTE2NmYiXX0sInBsYW5JZCI6IjRlZDFkM2YxLTRlY2QtNDZkOS05NDM2LWQ4ODM0NDVlMTY2ZiJ9" class="btn-primary--full">Get the Primal Reset →</a>
                     <p class="pricing-note">No subscriptions. No hidden fees. Yours forever.</p>
+                    <div style="margin-top: 24px; border-top: 1px solid var(--border-dark); padding-top: 20px; display: flex; flex-direction: column; gap: 14px;">
+                        <p style="font-size: 13px; color: rgba(240,237,232,0.6); font-style: italic; line-height: 1.55;">"Lost 12kg in 8 weeks. Nothing I'd tried before came close." <span style="color: var(--muted-dark); font-style: normal; display: block; margin-top: 4px;">— Patrick, Singapore</span></p>
+                        <p style="font-size: 13px; color: rgba(240,237,232,0.6); font-style: italic; line-height: 1.55;">"Finally understood why I kept failing for 10 years." <span style="color: var(--muted-dark); font-style: normal; display: block; margin-top: 4px;">— Ivan, United Kingdom</span></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1664,7 +1672,7 @@
             <h2>Before you begin.</h2>
         </div>
         <div class="faq-list">
-            <div class="faq-item open">
+            <div class="faq-item">
                 <button class="faq-q" onclick="toggleFaq(this)">
                     How quickly will I see results?
                     <span class="faq-icon">+</span>
@@ -1700,9 +1708,18 @@
                 <div class="faq-a">That's exactly who this is for. If you've done everything right by conventional wisdom and still aren't seeing results, you've been working against your biology - not with it. The Reset addresses the root cause that everything else misses.</div>
             </div>
         </div>
+        <p style="margin-top: 28px; font-size: 14px; color: var(--muted-light);">Still have questions? <a href="mailto:hello@primal1on1.com" style="color: #8B6316; text-decoration: underline;">Email Jerome directly</a></p>
     </div>
 </section>
 
+
+<!-- ─── CLOSING CTA ───────────────────────────────── -->
+<div style="background: var(--dark); text-align: center; padding: 52px 28px; border-top: 1px solid var(--border-dark);">
+    <p style="font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px;">Ready to reset?</p>
+    <h2 style="font-size: clamp(26px, 4vw, 42px); font-weight: 900; letter-spacing: -0.025em; margin-bottom: 24px; color: var(--text-dark);">Stop fighting your biology.<br>Start working with it.</h2>
+    <a href="https://www.primal1on1.com/resources/payment/eyJpbnRlZ3JhdGlvbkRhdGEiOnsicGxhbklkcyI6WyI0ZWQxZDNmMS00ZWNkLTQ2ZDktOTQzNi1kODgzNDQ1ZTE2NmYiXX0sInBsYW5JZCI6IjRlZDFkM2YxLTRlY2QtNDZkOS05NDM2LWQ4ODM0NDVlMTY2ZiJ9" class="btn-primary">Get the Primal Reset →</a>
+    <p style="font-size: 12px; color: var(--muted-dark); margin-top: 12px;">$129 one-time · Instant access · Lifetime updates</p>
+</div>
 
 <!-- ─── WHAT'S NEXT - DARK ────────────────────────── -->
 <section class="section bg-dark next-section">
