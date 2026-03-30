@@ -115,6 +115,10 @@
         }
         .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
 
+        .nav-links { display: flex; gap: 28px; }
+        .nav-links a { font-size: 12px; font-weight: 500; color: var(--muted-dark); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-dark); }
+
         /* ── HERO ──────────────────────────────────
            PHOTO: Best full-body outdoor photo of Jerome.
            Recommended: jungle kneeling / outdoor action shot.
@@ -804,6 +808,15 @@
         }
         .btn-outline:hover { background: var(--gold); border-color: var(--gold); color: #000; }
 
+        /* ── CLOSING CTA ───────────────────────────────── */
+        .closing-cta-wrap { background: var(--dark); border-top: 1px solid var(--border-dark); overflow: hidden; }
+        .closing-cta-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 380px 1fr; min-height: 480px; }
+        .closing-cta-photo { position: relative; overflow: hidden; }
+        .closing-cta-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; display: block; }
+        .closing-cta-fade { position: absolute; inset: 0; background: linear-gradient(to right, transparent 55%, var(--dark) 100%); }
+        .closing-cta-text { display: flex; flex-direction: column; justify-content: center; padding: 60px 52px 60px 40px; }
+        .closing-cta-btn { display: inline-block; align-self: flex-start; }
+
         /* ── NEXT STEPS SECTION -DARK ──────────────────── */
         .next-section { border-top: 1px solid var(--border-dark); }
         .next-head {
@@ -862,6 +875,11 @@
         @media (max-width: 768px) {
             .next-grid { grid-template-columns: 1fr; }
             .next-card { padding: 32px 28px; }
+            .closing-cta-grid { grid-template-columns: 1fr; min-height: auto; }
+            .closing-cta-photo { height: 320px; }
+            .closing-cta-fade { background: linear-gradient(to bottom, transparent 55%, var(--dark) 100%); }
+            .closing-cta-text { padding: 36px 28px 52px; }
+            .closing-cta-btn { align-self: stretch; text-align: center; }
         }
 
         /* ── STATS STRIP -DARK ────────────────────── */
@@ -1194,7 +1212,7 @@
             /* Mobile: zoom into face, soft atmospheric fade dissolves the body */
             .hero-img-col img {
                 transform: scale(1.85);
-                transform-origin: 58% 18%;
+                transform-origin: 58% 8%;
             }
             /* Mobile hero: full-bleed photo, text overlaid at bottom */
             .hero {
@@ -1249,6 +1267,7 @@
         @media (max-width: 640px) {
             nav { padding: 14px 20px; }
             .nav-cta { font-size: 12px; padding: 9px 14px; }
+            .nav-links { display: none; }
             /* Reduce section breathing room on mobile */
             .section { padding: 52px 0; }
             .section--tight { padding: 36px 0; }
@@ -1296,6 +1315,11 @@
 <!-- ─── NAV ──────────────────────────────────────── -->
 <nav>
     <a href="#" class="nav-logo">Primal <em>Reset</em></a>
+    <div class="nav-links">
+        <a href="#story">Story</a>
+        <a href="#proof">Results</a>
+        <a href="#get-reset">Pricing</a>
+    </div>
     <a href="https://www.primal1on1.com/resources/payment/eyJpbnRlZ3JhdGlvbkRhdGEiOnsicGxhbklkcyI6WyI0ZWQxZDNmMS00ZWNkLTQ2ZDktOTQzNi1kODgzNDQ1ZTE2NmYiXX0sInBsYW5JZCI6IjRlZDFkM2YxLTRlY2QtNDZkOS05NDM2LWQ4ODM0NDVlMTY2ZiJ9" class="nav-cta">Get the Reset</a>
 </nav>
 
@@ -1437,7 +1461,7 @@
 <!-- ─── JEROME INTRO - DARK ────────────────────────────
      Photo: Jerome's confident "after" shot - outdoor, strong, grounded.
 ─────────────────────────────────────────────────── -->
-<section class="section bg-dark2" style="padding-top: 40px;">
+<section class="section bg-dark2" id="story" style="padding-top: 40px;">
     <div class="container">
         <div class="jerome-intro-grid">
             <div class="jerome-photo">
@@ -1498,19 +1522,7 @@
         </div>
 
         <div class="product-grid">
-            <!-- Card 1: Primal Protocol eBook -->
-            <div class="product-card">
-                <div class="product-card-img">
-                    <img src="guide-protocol.jpg" alt="Primal Protocol eBook" />
-                </div>
-                <div class="product-card-body">
-                    <div class="product-tag">eBook</div>
-                    <h3>Primal Protocol</h3>
-                    <p>The 6 primal elements for lifelong transformation. The full framework - why it works when nothing else has.</p>
-                </div>
-            </div>
-
-            <!-- Card 2: Primal Training Playbook -->
+            <!-- Card 1: Primal Training Playbook -->
             <div class="product-card">
                 <div class="product-card-img">
                     <img src="guide-training.jpg" alt="Primal Training Playbook" />
@@ -1522,7 +1534,7 @@
                 </div>
             </div>
 
-            <!-- Card 3: Primal Meal Prep Guide -->
+            <!-- Card 2: Primal Meal Prep Guide -->
             <div class="product-card">
                 <div class="product-card-img">
                     <img src="guide-meal.jpg" alt="Primal Meal Prep Guide" />
@@ -1531,6 +1543,18 @@
                     <div class="product-tag">Guide</div>
                     <h3>Primal Meal Prep</h3>
                     <p>Simple, whole-food meals that fuel fat loss, muscle growth, and steady energy. No complicated macros - food that works for your biology.</p>
+                </div>
+            </div>
+
+            <!-- Card 3: Primal Protocol eBook -->
+            <div class="product-card">
+                <div class="product-card-img">
+                    <img src="guide-protocol.jpg" alt="Primal Protocol eBook" />
+                </div>
+                <div class="product-card-body">
+                    <div class="product-tag">eBook</div>
+                    <h3>Primal Protocol</h3>
+                    <p>The 6 primal elements for lifelong transformation. The full framework - why it works when nothing else has.</p>
                 </div>
             </div>
         </div>
@@ -1545,9 +1569,9 @@
         <div class="value-stack">
             <p class="vs-title">Everything in your Primal Reset</p>
             <ul class="vs-items">
-                <li><span class="vs-check">✓</span><span>Primal Protocol eBook</span></li>
                 <li><span class="vs-check">✓</span><span>Primal Training Playbook</span></li>
                 <li><span class="vs-check">✓</span><span>Primal Meal Prep Guide</span></li>
+                <li><span class="vs-check">✓</span><span>Primal Protocol eBook</span></li>
                 <li><span class="vs-check">✓</span><span>Primal Mindset Framework</span><span class="vs-badge">Free</span></li>
                 <li><span class="vs-check">✓</span><span>Lifetime access + all future updates</span></li>
             </ul>
@@ -1640,9 +1664,9 @@
                 </div>
                 <div class="pricing-body">
                     <ul class="pricing-items">
-                        <li><span class="check">✓</span><span>Primal Protocol eBook</span></li>
                         <li><span class="check">✓</span><span>Primal Training Playbook</span></li>
                         <li><span class="check">✓</span><span>Primal Meal Prep Guide</span></li>
+                        <li><span class="check">✓</span><span>Primal Protocol eBook</span></li>
                         <li><span class="check">✓</span><span>Primal Mindset Framework <span style="font-size:10px;font-weight:700;background:var(--gold);color:#000;padding:2px 6px;border-radius:2px;margin-left:4px;letter-spacing:0.05em;">FREE</span></span></li>
                         <li><span class="check">✓</span><span>Lifetime access + all future updates</span></li>
                     </ul>
@@ -1710,11 +1734,19 @@
 
 
 <!-- ─── CLOSING CTA ───────────────────────────────── -->
-<div style="background: var(--dark); text-align: center; padding: 52px 28px; border-top: 1px solid var(--border-dark);">
-    <p style="font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px;">Ready to reset?</p>
-    <h2 style="font-size: clamp(26px, 4vw, 42px); font-weight: 900; letter-spacing: -0.025em; margin-bottom: 24px; color: var(--text-dark);">Stop fighting your biology.<br>Start working with it.</h2>
-    <a href="https://www.primal1on1.com/resources/payment/eyJpbnRlZ3JhdGlvbkRhdGEiOnsicGxhbklkcyI6WyI0ZWQxZDNmMS00ZWNkLTQ2ZDktOTQzNi1kODgzNDQ1ZTE2NmYiXX0sInBsYW5JZCI6IjRlZDFkM2YxLTRlY2QtNDZkOS05NDM2LWQ4ODM0NDVlMTY2ZiJ9" class="btn-primary">Get the Primal Reset →</a>
-    <p style="font-size: 14px; color: var(--muted-dark); margin-top: 20px; line-height: 1.65;">Trusted by men and women worldwide to reclaim health, strength and energy.</p>
+<div class="closing-cta-wrap">
+    <div class="closing-cta-grid">
+        <div class="closing-cta-photo">
+            <img src="jerome-mirror.jpg" alt="Jerome Tan" />
+            <div class="closing-cta-fade"></div>
+        </div>
+        <div class="closing-cta-text">
+            <p style="font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px;">Ready to reset?</p>
+            <h2 style="font-size: clamp(26px, 3.5vw, 42px); font-weight: 900; letter-spacing: -0.025em; margin-bottom: 28px; color: var(--text-dark); line-height: 1.07;">Stop fighting your biology.<br>Start working with it.</h2>
+            <a href="https://www.primal1on1.com/resources/payment/eyJpbnRlZ3JhdGlvbkRhdGEiOnsicGxhbklkcyI6WyI0ZWQxZDNmMS00ZWNkLTQ2ZDktOTQzNi1kODgzNDQ1ZTE2NmYiXX0sInBsYW5JZCI6IjRlZDFkM2YxLTRlY2QtNDZkOS05NDM2LWQ4ODM0NDVlMTY2ZiJ9" class="btn-primary closing-cta-btn">Get the Primal Reset →</a>
+            <p style="font-size: 14px; color: var(--muted-dark); margin-top: 20px; line-height: 1.65;">Trusted by men and women worldwide to reclaim health, strength and energy.</p>
+        </div>
+    </div>
 </div>
 
 <!-- ─── WHAT'S NEXT - DARK ────────────────────────── -->
