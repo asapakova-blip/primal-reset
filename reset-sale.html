@@ -1663,7 +1663,17 @@
             <div class="pricing-card">
                 <div class="pricing-top">
                     <div class="pricing-top-label">Primal Reset</div>
-                    <div style="display:inline-block; background:var(--gold); color:#000; font-size:11px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; padding:4px 10px; border-radius:3px; margin-bottom:12px;">Limited Offer</div>
+                    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+                        <div style="display:inline-block; background:var(--gold); color:#000; font-size:11px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; padding:4px 10px; border-radius:3px;">Limited Offer</div>
+                        <div style="display:flex; align-items:center; gap:4px; background:rgba(0,0,0,0.25); border-radius:4px; padding:5px 10px;">
+                            <span style="font-size:11px; color:rgba(240,237,232,0.5); margin-right:2px;">⏱</span>
+                            <span id="timer-h" style="font-size:13px; font-weight:800; color:#fff; font-variant-numeric:tabular-nums;">00</span>
+                            <span style="font-size:13px; font-weight:800; color:rgba(240,237,232,0.5);">:</span>
+                            <span id="timer-m" style="font-size:13px; font-weight:800; color:#fff; font-variant-numeric:tabular-nums;">00</span>
+                            <span style="font-size:13px; font-weight:800; color:rgba(240,237,232,0.5);">:</span>
+                            <span id="timer-s" style="font-size:13px; font-weight:800; color:#fff; font-variant-numeric:tabular-nums;">00</span>
+                        </div>
+                    </div>
                     <div class="price-row" style="align-items:flex-end; gap:10px;">
                         <div>
                             <span class="price-sym">$</span>
@@ -1671,23 +1681,6 @@
                         </div>
                         <span style="font-size:22px; color:var(--muted-dark); text-decoration:line-through; margin-bottom:8px;">$129</span>
                     </div>
-                    <div id="sale-timer" style="display:flex; gap:8px; margin:10px 0 4px; justify-content:center;">
-                        <div style="text-align:center;">
-                            <span id="timer-h" style="font-size:22px; font-weight:800; color:var(--gold);">00</span>
-                            <div style="font-size:9px; color:var(--muted-dark); text-transform:uppercase; letter-spacing:0.08em;">hrs</div>
-                        </div>
-                        <span style="font-size:22px; font-weight:800; color:var(--gold); line-height:1.2;">:</span>
-                        <div style="text-align:center;">
-                            <span id="timer-m" style="font-size:22px; font-weight:800; color:var(--gold);">00</span>
-                            <div style="font-size:9px; color:var(--muted-dark); text-transform:uppercase; letter-spacing:0.08em;">min</div>
-                        </div>
-                        <span style="font-size:22px; font-weight:800; color:var(--gold); line-height:1.2;">:</span>
-                        <div style="text-align:center;">
-                            <span id="timer-s" style="font-size:22px; font-weight:800; color:var(--gold);">00</span>
-                            <div style="font-size:9px; color:var(--muted-dark); text-transform:uppercase; letter-spacing:0.08em;">sec</div>
-                        </div>
-                    </div>
-                    <p style="font-size:11px; color:var(--muted-dark); margin-bottom:4px;">Price goes back to $129 when timer ends</p>
                     <p class="price-note">One-time · Lifetime access · No subscriptions</p>
                 </div>
                 <div class="pricing-body">
