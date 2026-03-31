@@ -80,6 +80,132 @@
 
         .muted { color: var(--muted-dark); }
 
+        /* ── CHECKOUT POPUP ────────────────────── */
+        .checkout-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .checkout-overlay.is-open {
+            display: flex;
+        }
+        .checkout-modal {
+            background: var(--dark-2);
+            border: 1px solid var(--border-dark);
+            max-width: 440px;
+            width: 100%;
+            padding: 40px 36px 36px;
+            position: relative;
+            animation: modalIn 0.22s ease;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .checkout-close {
+            position: absolute;
+            top: 16px; right: 18px;
+            background: none;
+            border: none;
+            color: var(--muted-dark);
+            font-size: 22px;
+            cursor: pointer;
+            line-height: 1;
+            padding: 4px;
+            transition: color 0.15s;
+        }
+        .checkout-close:hover { color: var(--text-dark); }
+        .checkout-modal .label { margin-bottom: 14px; display: block; }
+        .checkout-modal h3 {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+        .checkout-price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+        .checkout-price-main {
+            font-size: 56px;
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            color: var(--text-dark);
+        }
+        .checkout-price-sym {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-dark);
+            align-self: flex-start;
+            margin-top: 8px;
+        }
+        .checkout-price-old {
+            font-size: 20px;
+            color: var(--muted-dark);
+            text-decoration: line-through;
+            margin-bottom: 4px;
+        }
+        .checkout-note {
+            font-size: 12px;
+            color: var(--muted-dark);
+            margin-bottom: 24px;
+            letter-spacing: 0.02em;
+        }
+        .checkout-items {
+            list-style: none;
+            border-top: 1px solid var(--border-dark);
+            padding-top: 20px;
+            margin-bottom: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .checkout-items li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--text-dark);
+        }
+        .checkout-items .check {
+            color: var(--gold);
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+        .checkout-cta {
+            display: block;
+            width: 100%;
+            background: var(--gold);
+            color: #000;
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 0.01em;
+            text-align: center;
+            padding: 18px 24px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .checkout-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+        .checkout-secure {
+            font-size: 11px;
+            color: var(--muted-dark);
+            text-align: center;
+            margin-top: 14px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
         /* ── NAV ───────────────────────────────── */
         nav {
             position: fixed;
@@ -1327,7 +1453,7 @@
         <a href="#proof">Results</a>
         <a href="#get-reset">Pricing</a>
     </div>
-    <a href="https://www.primal1on1.com/resources/payment/eyJpbnRlZ3JhdGlvbkRhdGEiOnsicGxhbklkcyI6WyI0ZWQxZDNmMS00ZWNkLTQ2ZDktOTQzNi1kODgzNDQ1ZTE2NmYiXX0sInBsYW5JZCI6IjRlZDFkM2YxLTRlY2QtNDZkOS05NDM2LWQ4ODM0NDVlMTY2ZiJ9" class="nav-cta">Get the Reset</a>
+    <a href="#" class="nav-cta" onclick="event.preventDefault(); openCheckout();">Get the Reset</a>
 </nav>
 
 
@@ -1675,7 +1801,7 @@
                     <div class="price-row" style="align-items:flex-end; gap:10px;">
                         <div>
                             <span class="price-sym">$</span>
-                            <span class="price-num">99</span>
+                            <span class="price-num">89</span>
                         </div>
                         <span style="font-size:22px; color:var(--muted-dark); text-decoration:line-through; margin-bottom:8px;">$129</span>
                     </div>
@@ -1689,7 +1815,7 @@
                         <li><span class="check">✓</span><span>Primal Mindset Framework <span style="font-size:10px;font-weight:700;background:var(--gold);color:#000;padding:2px 6px;border-radius:2px;margin-left:4px;letter-spacing:0.05em;">FREE</span></span></li>
                         <li><span class="check">✓</span><span>Lifetime access + all future updates</span></li>
                     </ul>
-                    <a href="https://www.primal1on1.com/resources/payment/eyJpbnRlZ3JhdGlvbkRhdGEiOnsicGxhbklkcyI6WyI0ZWQxZDNmMS00ZWNkLTQ2ZDktOTQzNi1kODgzNDQ1ZTE2NmYiXX0sInBsYW5JZCI6IjRlZDFkM2YxLTRlY2QtNDZkOS05NDM2LWQ4ODM0NDVlMTY2ZiJ9" class="btn-primary--full">Get the Primal Reset →</a>
+                    <a href="#" class="btn-primary--full" onclick="event.preventDefault(); openCheckout();">Get the Primal Reset →</a>
                     <p class="pricing-note">No subscriptions. No hidden fees. Yours forever.</p>
                     <div style="margin-top: 24px; border-top: 1px solid var(--border-dark); padding-top: 20px; display: flex; flex-direction: column; gap: 14px;">
                         <p style="font-size: 13px; color: rgba(240,237,232,0.6); font-style: italic; line-height: 1.55;">"Lost 12kg in 8 weeks. Nothing I'd tried before came close." <span style="color: var(--muted-dark); font-style: normal; display: block; margin-top: 4px;">Patrick, California</span></p>
@@ -1730,7 +1856,7 @@
                     Is this a subscription?
                     <span class="faq-icon">+</span>
                 </button>
-                <div class="faq-a">No. One payment of $99 (limited offer), and the system is yours forever. No recurring charges, no membership fees, no hidden costs.</div>
+                <div class="faq-a">No. One payment of $89 (limited offer), and the system is yours forever. No recurring charges, no membership fees, no hidden costs.</div>
             </div>
             <div class="faq-item">
                 <button class="faq-q" onclick="toggleFaq(this)">
@@ -1762,7 +1888,7 @@
         <div class="closing-cta-text">
             <p style="font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px;">Ready to reset?</p>
             <h2 style="font-size: clamp(26px, 3.5vw, 42px); font-weight: 900; letter-spacing: -0.025em; margin-bottom: 28px; color: var(--text-dark); line-height: 1.07;">Stop fighting your biology.<br>Start working with it.</h2>
-            <a href="https://www.primal1on1.com/resources/payment/eyJpbnRlZ3JhdGlvbkRhdGEiOnsicGxhbklkcyI6WyI0ZWQxZDNmMS00ZWNkLTQ2ZDktOTQzNi1kODgzNDQ1ZTE2NmYiXX0sInBsYW5JZCI6IjRlZDFkM2YxLTRlY2QtNDZkOS05NDM2LWQ4ODM0NDVlMTY2ZiJ9" class="btn-primary closing-cta-btn">Get the Primal Reset →</a>
+            <a href="#" class="btn-primary closing-cta-btn" onclick="event.preventDefault(); openCheckout();">Get the Primal Reset →</a>
             <p style="font-size: 14px; color: var(--muted-dark); margin-top: 20px; line-height: 1.65;">Trusted by men and women worldwide to reclaim health, strength and energy.</p>
         </div>
     </div>
@@ -1816,7 +1942,46 @@
 </footer>
 
 
+<!-- ─── CHECKOUT POPUP ──────────────────────────── -->
+<div class="checkout-overlay" id="checkoutOverlay" onclick="closeCheckout(event)">
+    <div class="checkout-modal">
+        <button class="checkout-close" onclick="closeCheckoutBtn()">&times;</button>
+        <span class="label">Limited Offer</span>
+        <h3>Primal Reset</h3>
+        <div class="checkout-price-row">
+            <span class="checkout-price-sym">$</span>
+            <span class="checkout-price-main">89</span>
+            <span class="checkout-price-old">$129</span>
+        </div>
+        <p class="checkout-note">One-time · Lifetime access · No subscriptions</p>
+        <ul class="checkout-items">
+            <li><span class="check">✓</span><span>Primal Training Playbook</span></li>
+            <li><span class="check">✓</span><span>Primal Meal Prep Guide</span></li>
+            <li><span class="check">✓</span><span>Primal Protocol eBook</span></li>
+            <li><span class="check">✓</span><span>Primal Mindset Framework <span style="font-size:10px;font-weight:700;background:var(--gold);color:#000;padding:2px 6px;margin-left:4px;letter-spacing:0.05em;">FREE</span></span></li>
+            <li><span class="check">✓</span><span>Lifetime access + all future updates</span></li>
+        </ul>
+        <a href="https://r.newie.app/1mp5upko0od0" class="checkout-cta" target="_blank">Complete Purchase →</a>
+        <p class="checkout-secure">🔒 Secure checkout · Powered by Newie</p>
+    </div>
+</div>
+
 <script>
+    function openCheckout() {
+        document.getElementById('checkoutOverlay').classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeCheckoutBtn() {
+        document.getElementById('checkoutOverlay').classList.remove('is-open');
+        document.body.style.overflow = '';
+    }
+    function closeCheckout(e) {
+        if (e.target === document.getElementById('checkoutOverlay')) closeCheckoutBtn();
+    }
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeCheckoutBtn();
+    });
+
     function toggleFaq(btn) {
         const item = btn.closest('.faq-item');
         const wasOpen = item.classList.contains('open');
